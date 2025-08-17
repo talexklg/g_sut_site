@@ -1,0 +1,154 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-image: url('../img/sut1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff; /* Ensure text is visible */
+    padding: 1rem; /* Keep original padding */
+    min-height: 400px; /* Increased height for the image */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keep h1 at the top, nav is outside now */
+    align-items: center; /* Center h1 horizontally */
+}
+
+header h1 {
+    width: 66.66%; /* 2/3 width */
+    text-align: center; /* Center text within h1 */
+    margin: 0 auto; /* Center h1 block itself */
+    padding-top: 20px; /* Reduced top padding to move it up */
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.5em; /* Slightly larger font size */
+    text-shadow:
+        0 0 5px rgba(0,0,0,0.8),   /* Subtle black glow */
+        0 0 10px rgba(0,0,0,0.6),
+        0 0 15px rgba(0,0,0,0.4);
+}
+
+.header-pre-title,
+.header-post-title {
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    text-shadow:
+        0 0 3px rgba(0,0,0,1),   /* Stronger inner black glow */
+        0 0 6px rgba(0,0,0,0.9),
+        0 0 9px rgba(0,0,0,0.7),
+        0 0 12px rgba(0,0,0,0.5); /* Dissipating effect */
+    width: 66.66%; /* Same width as h1 */
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
+}
+
+.header-pre-title {
+    margin-bottom: 10px; /* Adjusted spacing from h1 */
+}
+
+.header-post-title {
+    margin-top: 10px; /* Adjusted spacing from h1 */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+a {
+    color: #007bff;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.social-links img {
+    width: 30px; /* Adjust size as needed */
+    height: 30px;
+    vertical-align: middle;
+}
+
+/* Horizontal Dropdown Menu Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Make main menu horizontal */
+    justify-content: center; /* Center the menu items */
+    background-color: #444; /* Darker background for menu */
+}
+
+nav ul li {
+    position: relative; /* For submenu positioning */
+    padding: 10px 15px;
+}
+
+nav ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+nav ul li:hover {
+    background-color: #555; /* Hover effect for main items */
+}
+
+/* Submenu styles */
+nav ul ul {
+    display: none; /* Hide submenus by default */
+    position: absolute;
+    top: 100%; /* Position below parent */
+    left: 0;
+    background-color: #444; /* Same background as main menu */
+    min-width: 180px; /* Minimum width for dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Subtle shadow */
+    z-index: 1; /* Ensure it's above other content */
+    flex-direction: column; /* Stack submenu items vertically */
+}
+
+nav ul ul li {
+    padding: 8px 15px;
+    border-bottom: 1px solid #555; /* Separator for submenu items */
+}
+
+nav ul ul li:last-child {
+    border-bottom: none; /* No border for last item */
+}
+
+nav ul ul li a {
+    color: #fff;
+}
+
+nav ul ul li:hover {
+    background-color: #666; /* Hover effect for submenu items */
+}
+
+/* Show submenu on hover */
+nav ul li:hover > ul {
+    display: flex; /* Show submenu on hover */
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #f0f0f0; /* Revert to background color */
+    color: #333; /* Revert to original text color */
+    padding: 80px 0;
+    text-align: center;
+}

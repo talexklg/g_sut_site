@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ news_article.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ news_article.title }}</h2>
+<p><em>Опубликовано: {{ news_article.pub_date|date:"d.m.Y" }}</em></p>
+<p>Автор: {{ news_article.author.get_full_name|default:news_article.author.username }}</p>
+<hr>
+<p>{{ news_article.content|linebreaksbr }}</p>
+{% endblock %}

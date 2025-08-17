@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Заявка отправлена{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Ваша заявка успешно отправлена!</h1>
+    <p>Мы свяжемся с вами в ближайшее время.</p>
+    <a href="{% url 'feedback:enrollment_form' %}">Отправить еще одну заявку</a>
+    <a href="{% url 'core:home' %}">На главную</a>
+</div>
+{% endblock %}

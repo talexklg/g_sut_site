@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Направления - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<section class="section programs-section">
+    <div class="container">
+        <h2>Наши направления</h2>
+        {% if programs %}
+            <div class="program-cards">
+                {% for program in programs %}
+                    <div class="card">
+                        <h3><a href="{% url 'programs:detail' pk=program.pk %}">{{ program.name }}</a></h3>
+                        <p><strong>Возрастная группа:</strong> {{ program.age_group }}</p>
+                        <p><strong>Преподаватель:</strong> {{ program.teacher.full_name|default:"Не указан" }}</p>
+                        <p>{{ program.description|truncatewords:30 }}</p>
+                        <a href="{% url 'programs:detail' pk=program.pk %}" class="button">Подробнее</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Пока нет доступных программ. Загляните позже!</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

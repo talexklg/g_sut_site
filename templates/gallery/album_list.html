@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Фотогалерея - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Фотогалерея</h2>
+{% if albums %}
+    <ul>
+        {% for album in albums %}
+            <li>
+                <a href="{% url 'gallery:album_detail' pk=album.pk %}">
+                    <h3>{{ album.title }}</h3>
+                </a>
+                <p>{{ album.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Пока нет ни одного фотоальбома.</p>
+{% endif %}
+{% endblock %}

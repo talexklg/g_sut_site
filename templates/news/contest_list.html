@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Конкурсы - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Конкурсы</h2>
+{% if contests %}
+    <ul>
+        {% for contest in contests %}
+            <li>
+                <h3><a href="{% url 'news:contest_detail' pk=contest.pk %}">{{ contest.title }}</a></h3>
+                <p><em>Дата начала: {{ contest.start_date|date:"d.m.Y" }}</em></p>
+                {% if contest.end_date %}
+                    <p><em>Дата окончания: {{ contest.end_date|date:"d.m.Y" }}</em></p>
+                {% endif %}
+                <p>{{ contest.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Конкурсов пока нет.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ contest.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ contest.title }}</h2>
+<p><em>Дата начала: {{ contest.start_date|date:"d.m.Y" }}</em></p>
+{% if contest.end_date %}
+    <p><em>Дата окончания: {{ contest.end_date|date:"d.m.Y" }}</em></p>
+{% endif %}
+<hr>
+<p>{{ contest.description|linebreaksbr }}</p>
+{% endblock %}

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+    networks:
+      - sut_network
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=sut_db
+      - POSTGRES_USER=sut_user
+      - POSTGRES_PASSWORD=sut_password
+    networks:
+      - sut_network
+
+  redis:
+    image: redis:7
+    networks:
+      - sut_network
+
+volumes:
+  postgres_data:
+
+networks:
+  sut_network:
+    driver: bridge

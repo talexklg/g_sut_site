@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Достижения - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Наши достижения</h2>
+{% if achievements %}
+    <ul>
+        {% for achievement in achievements %}
+            <li>
+                {% if achievement.image %}
+                    <img src="{{ achievement.image.url }}" alt="{{ achievement.title }}" width="200">
+                {% endif %}
+                <h3>{{ achievement.title }}</h3>
+                <p><em>Дата: {{ achievement.date|date:"d.m.Y" }}</em></p>
+                <p>{{ achievement.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Информация о достижениях пока не добавлена.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ notice.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ notice.title }}</h2>
+<p><em>Опубликовано: {{ notice.pub_date|date:"d.m.Y" }}</em></p>
+<hr>
+<p>{{ notice.content|linebreaksbr }}</p>
+{% endblock %}

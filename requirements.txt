@@ -1,0 +1,9 @@
+Django==5.2
+psycopg2-binary
+redis
+python-decouple
+gunicorn
+
+dj-database-url
+python-dotenv
+Pillow

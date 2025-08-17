@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Объявления - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Объявления</h2>
+{% if notices %}
+    <ul>
+        {% for notice in notices %}
+            <li>
+                <h3><a href="{% url 'notice:detail' pk=notice.pk %}">{{ notice.title }}</a></h3>
+                <p><em>Опубликовано: {{ notice.pub_date|date:"d.m.Y" }}</em></p>
+                <p>{{ notice.content|linebreaksbr }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Объявлений пока нет.</p>
+{% endif %}
+{% endblock %}

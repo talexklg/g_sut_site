@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Расписание - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Расписание занятий</h2>
+{% if schedule_entries %}
+    {% regroup schedule_entries by get_day_of_week_display as days_list %}
+    {% for day in days_list %}
+        <h3>{{ day.grouper }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Время</th>
+                    <th>Название занятия</th>
+                    <th>Программа</th>
+                    <th>Преподаватель</th>
+                    <th>Кабинет</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in day.list %}
+                    <tr>
+                        <td>{{ entry.start_time|time:"H:i" }} - {{ entry.end_time|time:"H:i" }}</td>
+                        <td>{{ entry.title }}</td>
+                        <td>{{ entry.program.name|default:"-" }}</td>
+                        <td>{{ entry.teacher.full_name|default:"-" }}</td>
+                        <td>{{ entry.room|default:"-" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+{% else %}
+    <p>Расписание пока не составлено.</p>
+{% endif %}
+{% endblock %}

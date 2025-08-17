@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ program.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2>{{ program.name }}</h2>
+        <p><strong>Возрастная группа:</strong> {{ program.age_group }}</p>
+        <p><strong>Преподаватель:</strong>
+            {% if program.teacher %}
+                {{ program.teacher.full_name }}
+                {% if program.teacher.photo %}
+                    <img src="{{ program.teacher.photo.url }}" alt="{{ program.teacher.full_name }}" class="teacher-photo">
+                {% endif %}
+            {% else %}
+                Не указан
+            {% endif %}
+        </p>
+        <hr>
+        <p>{{ program.description|linebreaksbr }}</p>
+        <a href="{% url 'programs:list' %}" class="button">Назад к программам</a>
+    </div>
+</section>
+{% endblock %}

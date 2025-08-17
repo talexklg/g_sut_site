@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+Главная - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <h1>Добро пожаловать в Станцию Юных Техников!</h1>
+        <p>Откройте мир творчества и инноваций для вашего ребенка.</p>
+        <a href="{% url 'feedback:enrollment_form' %}" class="button primary-button">Записаться на занятия</a>
+    </div>
+</section>
+
+<section class="section programs-section">
+    <div class="container">
+        <h2>Наши программы</h2>
+        <div class="program-cards">
+            <div class="card">
+                <h3>Робототехника</h3>
+                <p>Создавайте и программируйте роботов.</p>
+                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
+            </div>
+            <div class="card">
+                <h3>3D-моделирование</h3>
+                <p>Воплощайте идеи в объемные модели.</p>
+                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
+            </div>
+            <div class="card">
+                <h3>Программирование</h3>
+                <p>Изучайте языки и алгоритмы.</p>
+                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section news-section">
+    <div class="container">
+        <h2>Последние новости</h2>
+        <div class="news-items">
+            <div class="news-item">
+                <h3>Открыт набор на летние интенсивы!</h3>
+                <p>Успейте записаться на самые популярные курсы.</p>
+                <a href="{% url 'news:list' %}">Читать далее</a>
+            </div>
+            <div class="news-item">
+                <h3>Наши ученики победили в конкурсе "ТехноБудущее"</h3>
+                <p>Поздравляем юных инженеров с заслуженной победой!</p>
+                <a href="{% url 'news:list' %}">Читать далее</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <h2>Готовы начать?</h2>
+        <p>Присоединяйтесь к нам и дайте старт будущему вашего ребенка!</p>
+        <a href="{% url 'feedback:enrollment_form' %}" class="button primary-button">Подать заявку сейчас</a>
+    </div>
+</section>
+{% endblock %}

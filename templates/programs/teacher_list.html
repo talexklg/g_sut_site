@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Наша команда - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>Наша команда</h2>
+{% if teachers %}
+    <ul>
+        {% for teacher in teachers %}
+            <li>
+                {% if teacher.photo %}
+                    <img src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}" width="150">
+                {% else %}
+                    <img src="{% static 'img/placeholder.png' %}" alt="Фото отсутствует" width="150">
+                {% endif %}
+                <h3>{{ teacher.full_name }}</h3>
+                <p><strong>Опыт работы:</strong> {{ teacher.experience }}</p>
+                <p>{{ teacher.bio|truncatewords:30 }}</p>
+                <p><strong>Контакты:</strong> {{ teacher.contacts }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Информация о преподавателях пока не добавлена.</p>
+{% endif %}
+{% endblock %}

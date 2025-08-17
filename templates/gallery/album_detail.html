@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ album.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ album.title }}</h2>
+<p>{{ album.description }}</p>
+<hr>
+{% if photos or videos %}
+    <div class="gallery-items">
+        {% for photo in photos %}
+            <figure class="gallery-item photo-item">
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}" width="200">
+                <figcaption>{{ photo.title }}</figcaption>
+            </figure>
+        {% endfor %}
+        {% for video in videos %}
+            <figure class="gallery-item video-item">
+                <video width="320" height="240" controls>
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Ваш браузер не поддерживает тег video.
+                </video>
+                <figcaption>{{ video.title }}</figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>В этом альбоме пока нет медиафайлов (фотографий или видео).</p>
+{% endif %}
+{% endblock %}
