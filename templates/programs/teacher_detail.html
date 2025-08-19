@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ teacher.full_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            {% if teacher.photo %}
+                <img src="{{ teacher.photo.url }}" class="img-fluid rounded teacher-photo-detail" alt="{{ teacher.full_name }}">
+            {% else %}
+                <img src="{% static 'img/teacher.png' %}" class="img-fluid rounded teacher-photo-detail" alt="Фото отсутствует">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h1>{{ teacher.full_name }}</h1>
+            <hr>
+            {% if teacher.bio %}
+                <p class="lead">{{ teacher.bio|linebreaks }}</p>
+            {% endif %}
+            {% if teacher.experience %}
+                <p><strong>Опыт работы:</strong> {{ teacher.experience }}</p>
+            {% endif %}
+            
+            <h4 class="mt-4">Контактная информация:</h4>
+            <ul class="list-unstyled">
+                {% if teacher.email %}
+                    <li><strong>Email:</strong> <a href="mailto:{{ teacher.email }}">{{ teacher.email }}</a></li>
+                {% endif %}
+                {% if teacher.phone_work %}
+                    <li><strong>Рабочий телефон:</strong> {{ teacher.phone_work }}</li>
+                {% endif %}
+                {% if teacher.phone_mobile %}
+                    <li><strong>Мобильный телефон:</strong> {{ teacher.phone_mobile }}</li>
+                {% endif %}
+                {% if teacher.telegram_messenger %}
+                    <li><strong>Telegram:</strong> {{ teacher.telegram_messenger }}</li>
+                {% endif %}
+                 {% if teacher.max_messenger %}
+                    <li><strong>MAX-мессенджер:</strong> {{ teacher.max_messenger }}</li>
+                {% endif %}
+                {% if teacher.other_contacts %}
+                    <li><strong>Другие контакты:</strong> {{ teacher.other_contacts }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+            <h3>Программы преподавателя:</h3>
+            {% if teacher.programs.all %}
+                <ul>
+                    {% for program in teacher.programs.all %}
+                        <li><a href="{{ program.get_absolute_url }}">{{ program.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>У этого преподавателя пока нет активных программ.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

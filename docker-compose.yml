@@ -32,8 +32,18 @@ services:
     networks:
       - sut_network
 
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - sut_network
+
 volumes:
   postgres_data:
+  ollama_data:
 
 networks:
   sut_network:

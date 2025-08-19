@@ -4,6 +4,14 @@
 Главная - {{ block.super }}
 {% endblock %}
 
+{% block page_header %}
+    <header>
+        <div class="header-pre-title">Муниципальное автономное учреждение дополнительного образования города Калининграда</div>
+        <h1><a href="/">Станция Юных Техников</a></h1>
+        <div class="header-post-title">236006, Калининград, Московский проспект, 98 · тел. +7 (4012) 97 33 96 · email: gsyut@edu.klgd.ru</div>
+    </header>
+{% endblock %}
+
 {% block content %}
 <section class="hero-section">
     <div class="container">

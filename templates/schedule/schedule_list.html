@@ -1,39 +1,120 @@
 {% extends "base.html" %}
 
-{% block title %}
-Расписание - {{ block.super }}
-{% endblock %}
+{% block title %}Расписание занятий{% endblock %}
 
 {% block content %}
-<h2>Расписание занятий</h2>
-{% if schedule_entries %}
-    {% regroup schedule_entries by get_day_of_week_display as days_list %}
-    {% for day in days_list %}
-        <h3>{{ day.grouper }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Время</th>
-                    <th>Название занятия</th>
-                    <th>Программа</th>
-                    <th>Преподаватель</th>
-                    <th>Кабинет</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for entry in day.list %}
-                    <tr>
-                        <td>{{ entry.start_time|time:"H:i" }} - {{ entry.end_time|time:"H:i" }}</td>
-                        <td>{{ entry.title }}</td>
-                        <td>{{ entry.program.name|default:"-" }}</td>
-                        <td>{{ entry.teacher.full_name|default:"-" }}</td>
-                        <td>{{ entry.room|default:"-" }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endfor %}
-{% else %}
-    <p>Расписание пока не составлено.</p>
-{% endif %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Расписание занятий</h1>
+
+    <form action="" method="get" class="mb-4 p-3 border rounded bg-light">
+        <div class="row g-3 align-items-baseline filter-form-row">
+            <div class="col-auto">
+                <h5 class="mb-0">Фильтры:</h5>
+            </div>
+            <div class="col">
+                {{ filter.form.title }}
+            </div>
+            <div class="col">
+                {{ filter.form.program }}
+            </div>
+            <div class="col">
+                {{ filter.form.teacher }}
+            </div>
+            <div class="col">
+                {{ filter.form.room }}
+            </div>
+            <div class="col-auto ms-auto d-flex">
+                <button type="submit" class="btn btn-primary">Применить</button>
+                <a href="{% url 'schedule:list' %}" class="btn btn-secondary ms-2">Сбросить</a>
+            </div>
+        </div>
+    </form>
+
+    {% if filter.qs %}
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-outline-primary btn-sm" id="expand-all-btn">Раскрыть все расписание</button>
+        </div>
+
+        {% regroup filter.qs by get_day_of_week_display as schedule_by_day %}
+        <div class="accordion mb-5" id="scheduleAccordion">
+            {% for day in schedule_by_day %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                        <button class="accordion-button {% if day.grouper != current_day_display %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if day.grouper == current_day_display %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                            {{ day.grouper }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if day.grouper == current_day_display %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#scheduleAccordion">
+                        <div class="accordion-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover schedule-table">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col" class="col-time">Время</th>
+                                            <th scope="col" class="col-title">Название</th>
+                                            <th scope="col" class="col-program">Программа</th>
+                                            <th scope="col" class="col-teacher">Преподаватель</th>
+                                            <th scope="col" class="col-room">Кабинет</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in day.list %}
+                                            <tr>
+                                                <td class="col-time">{{ item.start_time|time:"H:i" }} - {{ item.end_time|time:"H:i" }}</td>
+                                                <td class="col-title">{{ item.title }}</td>
+                                                <td class="col-program">{% if item.program %}<a href="{{ item.program.get_absolute_url }}">{{ item.program.name }}</a>{% else %}-{% endif %}</td>
+                                                <td class="col-teacher">{% if item.teacher %}<a href="{{ item.teacher.get_absolute_url }}">{{ item.teacher.get_short_name }}</a>{% else %}-{% endif %}</td>
+                                                <td class="col-room">{{ item.room }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            По вашему запросу ничего не найдено. Попробуйте изменить параметры фильтра.
+        </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const expandAllBtn = document.getElementById('expand-all-btn');
+    if (expandAllBtn) {
+        const currentDay = "{{ current_day_display|escapejs }}";
+
+        expandAllBtn.addEventListener('click', function() {
+            const accordionItems = document.querySelectorAll('#scheduleAccordion .accordion-item');
+            const currentlyCollapsed = document.querySelectorAll('#scheduleAccordion .accordion-button.collapsed').length;
+
+            if (currentlyCollapsed > 0) {
+                // If anything is collapsed, expand all.
+                accordionItems.forEach(function(item) {
+                    const collapseEl = item.querySelector('.accordion-collapse');
+                    const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseEl);
+                    collapseInstance.show();
+                });
+                expandAllBtn.textContent = 'Закрыть все расписание';
+            } else {
+                // If everything is expanded, collapse all except current day.
+                accordionItems.forEach(function(item) {
+                    const buttonEl = item.querySelector('.accordion-button');
+                    const dayName = buttonEl.textContent.trim();
+                    if (dayName !== currentDay) {
+                        const collapseEl = item.querySelector('.accordion-collapse');
+                        const collapseInstance = bootstrap.Collapse.getOrCreateInstance(collapseEl);
+                        collapseInstance.hide();
+                    }
+                });
+                expandAllBtn.textContent = 'Раскрыть все расписание';
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

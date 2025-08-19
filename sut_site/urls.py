@@ -30,6 +30,7 @@ urlpatterns = [
     path('notices/', include('notice.urls', namespace='notice')),
     path('schedule/', include('schedule.urls', namespace='schedule')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
+    path('chat/', include('ai_chat.urls', namespace='ai_chat')),
 ]
 
 if settings.DEBUG:

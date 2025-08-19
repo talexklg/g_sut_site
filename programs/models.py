@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Teacher(models.Model):
     """Model for a teacher."""
@@ -16,6 +17,20 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = "Преподаватель"
         verbose_name_plural = "Преподаватели"
+
+    def get_short_name(self):
+        """Returns the short name of the teacher, e.g., 'Иванов И. И.'."""
+        parts = self.full_name.split()
+        if len(parts) >= 3:
+            return f"{parts[0]} {parts[1][0]}. {parts[2][0]}."
+        elif len(parts) == 2:
+            return f"{parts[0]} {parts[1][0]}."
+        elif len(parts) == 1:
+            return parts[0]
+        return self.full_name
+
+    def get_absolute_url(self):
+        return reverse('programs:teacher_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.full_name
