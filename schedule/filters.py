@@ -18,14 +18,18 @@ class ScheduleEntryFilter(django_filters.FilterSet):
         empty_label='Все программы',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    teacher = django_filters.ModelChoiceFilter(
-        queryset=Teacher.objects.all(),
-        empty_label='Все преподаватели',
-        widget=forms.Select(attrs={'class': 'form-select'})
+    address = django_filters.CharFilter(
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Локация'})
     )
     room = django_filters.CharFilter(
         lookup_expr='icontains',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Кабинет'})
+    )
+    teacher = django_filters.ModelChoiceFilter(
+        queryset=Teacher.objects.all(),
+        empty_label='Все преподаватели',
+        widget=forms.Select(attrs={'class': 'form-select'})
     )
 
     def __init__(self, *args, **kwargs):
@@ -34,4 +38,4 @@ class ScheduleEntryFilter(django_filters.FilterSet):
 
     class Meta:
         model = ScheduleEntry
-        fields = ['title', 'program', 'teacher', 'room']
+        fields = ['title', 'program', 'teacher', 'room', 'address']

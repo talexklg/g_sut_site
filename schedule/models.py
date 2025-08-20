@@ -20,6 +20,7 @@ class ScheduleEntry(models.Model):
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES, verbose_name="День недели")
     start_time = models.TimeField(verbose_name="Время начала")
     end_time = models.TimeField(verbose_name="Время окончания")
+    address = models.CharField(max_length=255, blank=True, verbose_name="Локация")
     room = models.CharField(max_length=100, blank=True, verbose_name="Кабинет")
 
     class Meta:

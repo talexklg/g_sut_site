@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Главная - {{ block.super }}
@@ -6,67 +7,74 @@
 
 {% block page_header %}
     <header>
-        <div class="header-pre-title">Муниципальное автономное учреждение дополнительного образования города Калининграда</div>
-        <h1><a href="/">Станция Юных Техников</a></h1>
-        <div class="header-post-title">236006, Калининград, Московский проспект, 98 · тел. +7 (4012) 97 33 96 · email: gsyut@edu.klgd.ru</div>
+        <div class="header-content">
+            <div class="header-pre-title">Муниципальное автономное учреждение дополнительного образования города Калининграда</div>
+            <h1><a href="/">Станция Юных Техников</a></h1>
+            <div class="header-post-title">236006, Калининград, Московский проспект, 98 · тел. +7 (4012) 97 33 96 · email: gsyut@edu.klgd.ru</div>
+        </div>
     </header>
 {% endblock %}
 
 {% block content %}
-<section class="hero-section">
-    <div class="container">
-        <h1>Добро пожаловать в Станцию Юных Техников!</h1>
-        <p>Откройте мир творчества и инноваций для вашего ребенка.</p>
-        <a href="{% url 'feedback:enrollment_form' %}" class="button primary-button">Записаться на занятия</a>
-    </div>
-</section>
+<div class="main-content-grid">
+    <main class="main-content">
+        <div id='js-show-iframe-wrapper'>
+            <div class='pos-banner-fluid bf-23'>
 
-<section class="section programs-section">
-    <div class="container">
-        <h2>Наши программы</h2>
-        <div class="program-cards">
-            <div class="card">
-                <h3>Робототехника</h3>
-                <p>Создавайте и программируйте роботов.</p>
-                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
-            </div>
-            <div class="card">
-                <h3>3D-моделирование</h3>
-                <p>Воплощайте идеи в объемные модели.</p>
-                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
-            </div>
-            <div class="card">
-                <h3>Программирование</h3>
-                <p>Изучайте языки и алгоритмы.</p>
-                <a href="{% url 'programs:list' %}" class="button">Подробнее</a>
+                <div class='bf-23__decor'>
+                    <div class='bf-23__logo-wrap'>
+                        <img class='bf-23__logo' src='https://pos.gosuslugi.ru/bin/banner-fluid/gosuslugi-logo-blue.svg'
+                            alt='Госуслуги' />
+                        <div class='bf-23__slogan'>Решаем вместе</div>
+                    </div>
+                </div>
+                <div class='bf-23__content'>
+                    <div class='bf-23__text'>
+                        Есть предложения по организации учебного процесса или знаете, как сделать нас лучше?
+                    </div>
+
+                    <div class='bf-23__bottom-wrap'>
+                        <div class='bf-23__btn-wrap'>
+                            <!-- pos-banner-btn_2 не удалять; другие классы не добавлять -->
+                            <button class='pos-banner-btn_2' type='button'>Написать о проблеме
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-</section>
-
-<section class="section news-section">
-    <div class="container">
-        <h2>Последние новости</h2>
-        <div class="news-items">
-            <div class="news-item">
-                <h3>Открыт набор на летние интенсивы!</h3>
-                <p>Успейте записаться на самые популярные курсы.</p>
-                <a href="{% url 'news:list' %}">Читать далее</a>
+        <section class="accordion-section">
+            <div class="accordion">
+                <details>
+                    <summary>Информация и документы</summary>
+                    <div class="accordion-content">
+                        <p>Содержимое для информации и документов.</p>
+                    </div>
+                </details>
+                <details open>
+                    <summary>Новости</summary>
+                    <div class="accordion-content">
+                        <p>Содержимое для новостей.</p>
+                    </div>
+                </details>
+                <details open>
+                    <summary>Объявления</summary>
+                    <div class="accordion-content">
+                        <p>Содержимое для объявлений.</p>
+                    </div>
+                </details>
             </div>
-            <div class="news-item">
-                <h3>Наши ученики победили в конкурсе "ТехноБудущее"</h3>
-                <p>Поздравляем юных инженеров с заслуженной победой!</p>
-                <a href="{% url 'news:list' %}">Читать далее</a>
-            </div>
+        </section>
+    </main>
+    <aside class="sidebar-banners">
+        <div class="banners-container">
+            {% for i in "123456789abc" %}
+            <a href="#" class="banner-link">
+                <img src="{% static 'img/ph360x120.png' %}" alt="Баннер {{ forloop.counter }}">
+            </a>
+            {% endfor %}
         </div>
-    </div>
-</section>
-
-<section class="section cta-section">
-    <div class="container">
-        <h2>Готовы начать?</h2>
-        <p>Присоединяйтесь к нам и дайте старт будущему вашего ребенка!</p>
-        <a href="{% url 'feedback:enrollment_form' %}" class="button primary-button">Подать заявку сейчас</a>
-    </div>
-</section>
+    </aside>
+</div>
 {% endblock %}

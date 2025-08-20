@@ -1,72 +1,215 @@
+/* === Base Styles === */
 body {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa; /* Lighter gray */
+    color: #212529; /* Darker text for better contrast */
+    line-height: 1.6;
+    margin: 0;
 }
 
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* === Header (from home.html) === */
 header {
-    background-image: url('../img/sut1.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../img/sut1.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    color: #fff; /* Ensure text is visible */
-    padding: 1rem; /* Keep original padding */
-    min-height: 400px; /* Increased height for the image */
+    min-height: 400px;
+    color: #fff;
+    padding: 2rem 1rem;
+    /* Use flexbox to perfectly center the content */
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Keep h1 at the top, nav is outside now */
-    align-items: center; /* Center h1 horizontally */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 800px; /* Control the max width of the text block */
+}
+
+.header-pre-title,
+.header-post-title {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.header-pre-title {
+    margin-bottom: 0.5rem;
 }
 
 header h1 {
-    width: 66.66%; /* 2/3 width */
-    text-align: center; /* Center text within h1 */
-    margin: 0 auto; /* Center h1 block itself */
-    padding-top: 20px; /* Reduced top padding to move it up */
+    margin: 0.5rem 0;
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 header h1 a {
     color: white;
     text-decoration: none;
-    font-size: 2.5em; /* Slightly larger font size */
-    text-shadow:
-        0 0 5px rgba(0,0,0,0.8),   /* Subtle black glow */
-        0 0 10px rgba(0,0,0,0.6),
-        0 0 15px rgba(0,0,0,0.4);
-}
-
-.header-pre-title,
-.header-post-title {
-    color: #fff; /* White text */
-    text-align: center;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    text-shadow:
-        0 0 3px rgba(0,0,0,1),   /* Stronger inner black glow */
-        0 0 6px rgba(0,0,0,0.9),
-        0 0 9px rgba(0,0,0,0.7),
-        0 0 12px rgba(0,0,0,0.5); /* Dissipating effect */
-    width: 66.66%; /* Same width as h1 */
-    margin-left: auto; /* Center the block */
-    margin-right: auto; /* Center the block */
-}
-
-.header-pre-title {
-    margin-bottom: 10px; /* Adjusted spacing from h1 */
 }
 
 .header-post-title {
-    margin-top: 10px; /* Adjusted spacing from h1 */
+    margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
-footer {
-    background-color: #333;
+
+/* === Navigation === */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #343a40; /* Bootstrap dark grey */
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
     color: #fff;
-    padding: 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 1rem 1.5rem;
+    transition: background-color 0.2s ease-in-out;
 }
 
-a {
-    color: #007bff;
+nav ul li:hover > a,
+nav ul li a:focus {
+    background-color: #495057; /* Bootstrap lighter grey */
+}
+
+/* Submenu styles */
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #343a40;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    border-radius: 0 0 4px 4px;
+}
+
+nav ul ul li a {
+    padding: 0.75rem 1.5rem;
+}
+
+nav ul li:hover > ul {
+    display: flex;
+}
+
+/* === Main Layout === */
+.main-content-grid {
+    display: flex;
+    gap: 20px; /* Space between main content and sidebar */
+    padding: 20px;
+    max-width: 1400px; /* A bit wider to accommodate sidebar */
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 3; /* Takes up 3/4 of the space */
+}
+
+.sidebar-banners {
+    flex: 1; /* Takes up 1/4 of the space */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    height: fit-content; /* Make the container only as tall as its content */
+}
+
+.banners-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between banners */
+}
+
+.banner-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px; /* Slightly rounded corners for the images themselves */
+}
+
+
+
+/* === Accordion === */
+.accordion-section {
+    /* Container for the accordion */
+}
+
+.accordion details {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.accordion details:last-child {
+    margin-bottom: 0;
+}
+
+.accordion summary {
+    padding: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none; /* Remove default marker */
+    position: relative;
+}
+
+.accordion summary::-webkit-details-marker {
+    display: none; /* Hide marker for Chrome/Safari */
+}
+
+.accordion summary::before {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.2s ease-in-out;
+}
+
+.accordion details[open] summary::before {
+    content: '−';
+    transform: rotate(180deg);
+}
+
+
+.accordion .accordion-content {
+    padding: 0 1rem 1rem;
+    border-top: 1px solid #ddd;
+}
+
+
+/* === Footer === */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
 }
 
 .social-links {
@@ -75,100 +218,45 @@ a {
 
 .social-links a {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 .social-links img {
-    width: 30px; /* Adjust size as needed */
+    width: 30px;
     height: 30px;
     vertical-align: middle;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out;
+}
+.social-links img:hover {
+    opacity: 1;
 }
 
-/* Horizontal Dropdown Menu Styles */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Make main menu horizontal */
-    justify-content: center; /* Center the menu items */
-    background-color: #444; /* Darker background for menu */
-}
-
-nav ul li {
-    position: relative; /* For submenu positioning */
-    padding: 10px 15px;
-}
-
-nav ul li a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    white-space: nowrap; /* Prevent wrapping */
-}
-
-nav ul li:hover {
-    background-color: #555; /* Hover effect for main items */
-}
-
-/* Submenu styles */
-nav ul ul {
-    display: none; /* Hide submenus by default */
-    position: absolute;
-    top: 100%; /* Position below parent */
-    left: 0;
-    background-color: #444; /* Same background as main menu */
-    min-width: 180px; /* Minimum width for dropdown */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Subtle shadow */
-    z-index: 1; /* Ensure it's above other content */
-    flex-direction: column; /* Stack submenu items vertically */
-}
-
-nav ul ul li {
-    padding: 8px 15px;
-    border-bottom: 1px solid #555; /* Separator for submenu items */
-}
-
-nav ul ul li:last-child {
-    border-bottom: none; /* No border for last item */
-}
-
-nav ul ul li a {
-    color: #fff;
-}
-
-nav ul ul li:hover {
-    background-color: #666; /* Hover effect for submenu items */
-}
-
-/* Show submenu on hover */
-nav ul li:hover > ul {
-    display: flex; /* Show submenu on hover */
-}
-
-/* Hero Section */
-.hero-section {
-    background-color: #f0f0f0; /* Revert to background color */
-    color: #333; /* Revert to original text color */
-    padding: 80px 0;
-    text-align: center;
-}
-
+/* === Utility & Other pages (Schedule, Teacher, etc.) === */
 /* Schedule Table Styles */
 .schedule-table th, .schedule-table td {
     border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+.schedule-table th {
+    background-color: #f8f9fa;
 }
 
 .schedule-table .col-time {
-    width: 200px;
+    width: 150px;
 }
 .schedule-table .col-title {
-    width: 300px;
+    width: 250px;
 }
 .schedule-table .col-program {
-    width: 500px;
+    width: 300px;
+}
+.schedule-table .col-address {
+    width: 250px;
 }
 .schedule-table .col-teacher {
-    width: 400px;
+    width: 200px;
 }
 .schedule-table .col-room {
     width: 100px;
@@ -179,15 +267,19 @@ nav ul li:hover > ul {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Filter Form Override */
 .filter-form-row {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
-/* Chat Widget Styles */
+/* === Chat Widget Styles === */
+/* ... (keeping the existing chat styles) ... */
 .chat-widget-container {
     position: fixed;
     bottom: 20px;

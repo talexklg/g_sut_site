@@ -31,7 +31,7 @@ def chat_api(request):
 
             # --- Ollama API Integration ---
             ollama_url = "http://ollama:11434/api/generate"
-            model_name = "llama2" # You can change this to any model you have pulled in Ollama
+            model_name = "wizardlm2:7b" # You can change this to any model you have pulled in Ollama
 
             try:
                 payload = {

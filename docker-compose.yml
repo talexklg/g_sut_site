@@ -3,7 +3,12 @@ version: '3.8'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "
+        while ! nc -z ollama 11434; do 
+          sleep 1; 
+        done; 
+        python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
@@ -26,11 +31,21 @@ services:
       - POSTGRES_PASSWORD=sut_password
     networks:
       - sut_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sut_user -d sut_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   redis:
     image: redis:7
     networks:
       - sut_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   ollama:
     image: ollama/ollama

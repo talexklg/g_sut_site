@@ -18,10 +18,13 @@
                 {{ filter.form.program }}
             </div>
             <div class="col">
-                {{ filter.form.teacher }}
+                {{ filter.form.address }}
             </div>
             <div class="col">
                 {{ filter.form.room }}
+            </div>
+            <div class="col">
+                {{ filter.form.teacher }}
             </div>
             <div class="col-auto ms-auto d-flex">
                 <button type="submit" class="btn btn-primary">Применить</button>
@@ -53,8 +56,9 @@
                                             <th scope="col" class="col-time">Время</th>
                                             <th scope="col" class="col-title">Название</th>
                                             <th scope="col" class="col-program">Программа</th>
-                                            <th scope="col" class="col-teacher">Преподаватель</th>
+                                            <th scope="col" class="col-address">Локация</th>
                                             <th scope="col" class="col-room">Кабинет</th>
+                                            <th scope="col" class="col-teacher">Преподаватель</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,8 +67,9 @@
                                                 <td class="col-time">{{ item.start_time|time:"H:i" }} - {{ item.end_time|time:"H:i" }}</td>
                                                 <td class="col-title">{{ item.title }}</td>
                                                 <td class="col-program">{% if item.program %}<a href="{{ item.program.get_absolute_url }}">{{ item.program.name }}</a>{% else %}-{% endif %}</td>
-                                                <td class="col-teacher">{% if item.teacher %}<a href="{{ item.teacher.get_absolute_url }}">{{ item.teacher.get_short_name }}</a>{% else %}-{% endif %}</td>
+                                                <td class="col-address">{{ item.address }}</td>
                                                 <td class="col-room">{{ item.room }}</td>
+                                                <td class="col-teacher">{% if item.teacher %}<a href="{{ item.teacher.get_absolute_url }}">{{ item.teacher.get_short_name }}</a>{% else %}-{% endif %}</td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>
