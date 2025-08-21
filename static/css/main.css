@@ -17,8 +17,6 @@ a:hover {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 0 15px;
 }
 
@@ -35,10 +33,6 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.header-content {
-    max-width: 800px; /* Control the max width of the text block */
 }
 
 .header-pre-title,
@@ -125,8 +119,6 @@ nav ul li:hover > ul {
     display: flex;
     gap: 20px; /* Space between main content and sidebar */
     padding: 20px;
-    max-width: 1400px; /* A bit wider to accommodate sidebar */
-    margin: 0 auto;
 }
 
 .main-content {
@@ -177,6 +169,8 @@ nav ul li:hover > ul {
     cursor: pointer;
     list-style: none; /* Remove default marker */
     position: relative;
+    text-align: center;
+    font-size: 2.5rem;
 }
 
 .accordion summary::-webkit-details-marker {
@@ -203,6 +197,26 @@ nav ul li:hover > ul {
     border-top: 1px solid #ddd;
 }
 
+/* === Info Text (Accordion Content) === */
+.info-text--item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+.info-text--item:last-child {
+    border-bottom: none;
+}
+.info-text--ask {
+    flex: 1;
+    font-weight: bold;
+}
+.info-text--answer {
+    flex: 2;
+}
+.info-text--answer span {
+    display: block;
+}
 
 /* === Footer === */
 footer {
@@ -368,4 +382,49 @@ footer {
     color: #333;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
+}
+
+/* === Responsive Design === */
+@media (max-width: 992px) {
+    /* Stack the main content and sidebar */
+    .main-content-grid {
+        flex-direction: column;
+    }
+
+    /* Adjust header font size for smaller screens */
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Adjust accordion summary font size for smaller screens */
+    .accordion summary {
+        font-size: 1.5rem;
+    }
+
+    /* Stack navigation items */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a {
+        padding: 0.75rem 1rem; /* Adjust padding for vertical menu */
+    }
+
+    /* Ensure submenus still work correctly */
+    nav ul ul {
+        position: static; /* Remove absolute positioning */
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: #495057; /* Slightly different bg for sub-items */
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Stack the info text columns on smaller screens */
+    .info-text--item {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
 }

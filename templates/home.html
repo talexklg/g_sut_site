@@ -17,6 +17,15 @@
 
 {% block content %}
 <div class="main-content-grid">
+    <aside class="sidebar-banners">
+        <div class="banners-container">
+            {% for i in "123456789abc" %}
+            <a href="#" class="banner-link">
+                <img src="{% static 'img/ph360x120.png' %}" alt="Баннер {{ forloop.counter }}">
+            </a>
+            {% endfor %}
+        </div>
+    </aside>
     <main class="main-content">
         <div id='js-show-iframe-wrapper'>
             <div class='pos-banner-fluid bf-23'>
@@ -47,9 +56,129 @@
         <section class="accordion-section">
             <div class="accordion">
                 <details>
-                    <summary>Информация и документы</summary>
+                    <summary>Основные сведения</summary>
                     <div class="accordion-content">
-                        <p>Содержимое для информации и документов.</p>
+                        <div class="info-text">
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Полное наименование учреждения</span>
+            </div>
+            <div class="info-text--answer">
+                <span>Муниципальное автономное учреждение дополнительного образования города Калининграда Станция юных
+                    техников</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Краткое наименование учреждения</span>
+            </div>
+            <div class="info-text--answer">
+                <span>МАУДО СЮТ</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Дата создания</span>
+            </div>
+            <div class="info-text--answer">
+                <span>01.09.1976</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Сведения об учредителе</span>
+            </div>
+            <div class="info-text--answer">
+                <span>Администрация городского округа «Город Калининград»</span> <span>Функции и полномочия Учредителя
+                    осуществляет комитет по образованию администрации городского округа «Город Калининград»</span>
+                <span>Адрес: 236000, г. Калининград, ул. Чайковского, 50/52</span>
+                <span>Контактные телефоны: <a href="tel:+74012924009">+7(4012) 92-40-09</a>; <br>тел./факс: <a
+                        href="tel:+74012924062">+7(4012) 92-40-62</a></span>
+                <span>E-mail: <a href="mailto:cityedu@klgd.ru">cityedu@klgd.ru</a></span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Адрес</span>
+            </div>
+            <div class="info-text--answer">
+                <span>236006, Россия, г. Калининград, Московский проспект, д.98</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Режим и график работы</span>
+            </div>
+            <div class="info-text--answer">
+                <span>Станции: Ежедневно с 8:00 до 20:00</span>
+                <span>Администрации: Понедельник-Пятница с 9:00-18:00, обед 13:00-14:00</span>
+                <span>Кроме государственных праздников.</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Официальный сайт</span>
+            </div>
+            <div class="info-text--answer">
+                <span><a href="https://sut39.ru/" target="_blank" rel="noopener noreferrer">https://sut39.ru/</a></span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>E-mail</span>
+            </div>
+            <div class="info-text--answer">
+                <span><a href="mailto:gsyut@edu.klgd.ru">gsyut@edu.klgd.ru</a></span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Телефоны</span>
+            </div>
+            <div class="info-text--answer">
+                <span>Директор <a href="tel:+74012973396">+7(4012) 97-33-96 доб.103</a></span>
+                <span>Приёмная <a href="tel:+74012973396">+7(4012) 97-33-96</a></span>
+                <span>Заместитель директора <a href="tel:+74012973395">+7(4012) 97-33-95 доб.104</a></span>
+                <span>Заведующий хозяйством <a href="tel:+74012973395">+7(4012) 97-33-95 доб.100</a></span>
+                <span>Бухгалтерия <a href="tel:+74012973396">+7(4012) 97-33-96 доб.105</a></span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Места осуществления образовательной деятельности</span>
+            </div>
+            <div class="info-text--answer">
+                <span>СЮТ - Московский проспект, д. 98</span>
+                <span>Гимназия №22 - Солнечный б-р, д. 5</span>
+                <span>Лицей №17 - ул. Серпуховская, д. 28</span>
+                <span>Лицей №35 - ул. Маршала Баграмяна, д. 34</span>
+                <span>СОШ №4 - ул. К.Маркса, д. 65</span>
+                <span>СОШ №7 - ул. Горького, д. 66</span>
+                <span>СОШ №13 - ул. Свердлова, д. 27</span>
+                <span>СОШ №24 - ул. Пионерская, д. 9</span>
+                <span>ДС №101 - ул. Пролетарская, д. 64</span>
+                <span>ДС №101 - ул. Генерала Соммера, д. 27А</span>
+                <span>ДС №133 - ул. Куприна, д. 17</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Лицензия на осуществление образовательной деятельности</span>
+            </div>
+            <div class="info-text--answer">
+                <span>№ ДО-1762 от 28.06.2021, срок действия - бессрочно</span>
+            </div>
+        </div>
+        <div class="info-text--item">
+            <div class="info-text--ask">
+                <span>Государственной аккредитации образовательной деятельности по реализуемым образовательным
+                    программам</span>
+            </div>
+            <div class="info-text--answer">
+                <span>Нет</span>
+            </div>
+        </div>
+    </div>
                     </div>
                 </details>
                 <details open>
@@ -67,14 +196,5 @@
             </div>
         </section>
     </main>
-    <aside class="sidebar-banners">
-        <div class="banners-container">
-            {% for i in "123456789abc" %}
-            <a href="#" class="banner-link">
-                <img src="{% static 'img/ph360x120.png' %}" alt="Баннер {{ forloop.counter }}">
-            </a>
-            {% endfor %}
-        </div>
-    </aside>
 </div>
 {% endblock %}

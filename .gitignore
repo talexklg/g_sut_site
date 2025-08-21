@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 /staticfiles
 .DS_Store
+/media/
