@@ -13,32 +13,44 @@
 <body>
     {% block page_header %}{% endblock %}
     <nav>
-        <ul>
-            <li><a href="{% url 'core:home' %}">Главная</a></li>
-            <li>
-                <a href="#">О нас</a>
-                <ul>
-                    <li><a href="{% url 'pages:history' %}">История</a></li>
-                    <li><a href="{% url 'programs:teacher_list' %}">Наша команда</a></li>
-                    <li><a href="{% url 'core:achievement_list' %}">Достижения</a></li>
-                    <li><a href="{% url 'gallery:album_list' %}">Фотогалерея</a></li>
-                    <li><a href="{% url 'pages:official_info' %}">Официальные сведения</a></li>
-                </ul>
-            </li>
-            <li><a href="{% url 'programs:list' %}">Направления</a></li>
-            <li>
-                <a href="#">События</a>
-                <ul>
-                    <li><a href="{% url 'news:list' %}">Новости</a></li>
-                    <li><a href="{% url 'news:contest_list' %}">Конкурсы</a></li>
-                    <li><a href="{% url 'notice:list' %}">Объявления</a></li>
-                </ul>
-            </li>
-            <li><a href="{% url 'schedule:list' %}">Расписание</a></li>
-            <li><a href="{% url 'pages:summer_camp' %}">Летний лагерь</a></li>
-            <li><a href="{% url 'pages:safety' %}">Безопасность</a></li>
-            <li><a href="{% url 'pages:contacts' %}">Контакты</a></li>
-        </ul>
+        <div class="nav-container">
+            <ul>
+                <li><a href="{% url 'core:home' %}">Главная</a></li>
+                <li>
+                    <a href="#">О нас</a>
+                    <ul>
+                        <li><a href="{% url 'pages:history' %}">История</a></li>
+                        <li><a href="{% url 'programs:teacher_list' %}">Наша команда</a></li>
+                        <li><a href="{% url 'core:achievement_list' %}">Достижения</a></li>
+                        <li><a href="{% url 'gallery:album_list' %}">Фотогалерея</a></li>
+                        <li><a href="{% url 'pages:official_info' %}">Официальные сведения</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">События</a>
+                    <ul>
+                        <li><a href="{% url 'news:list' %}">Новости</a></li>
+                        <li><a href="{% url 'news:contest_list' %}">Конкурсы</a></li>
+                        <li><a href="{% url 'notice:list' %}">Объявления</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'programs:list' %}">Направления</a></li>
+                <li><a href="{% url 'schedule:list' %}">Расписание</a></li>
+                <li><a href="{% url 'pages:summer_camp' %}">Летний лагерь</a></li>
+                <li><a href="{% url 'pages:safety' %}">Безопасность</a></li>
+                <li><a href="{% url 'pages:contacts' %}">Контакты</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <button class="search-icon" id="search-toggle"><img src="{% static 'img/icons/search_w.svg' %}" alt="Поиск"></button>
+                    <form method="GET" action="{% url 'core:search_results' %}" class="search-form" id="search-form">
+                        <input type="text" name="q" id="search-input" placeholder="Поиск..." autocomplete="off">
+                        <button type="submit" class="search-submit"><img src="{% static 'img/icons/search_w.svg' %}" alt="Поиск"></button>
+                    </form>
+                </div>
+                <a href="#" class="eye-icon" title="Версия для слабовидящих"><img src="{% static 'img/icons/eye.svg' %}" alt="Версия для слабовидящих"></a>
+            </div>
+        </div>
     </nav>
 
     <main>
@@ -173,5 +185,25 @@
         });
     });
     </script>
+    <script>
+  const toggle = document.getElementById('search-toggle');
+  const form = document.getElementById('search-form');
+  const input = document.getElementById('search-input');
+
+  toggle.addEventListener('click', () => {
+    form.classList.toggle('active');
+    if (form.classList.contains('active')) {
+      input.focus();
+    }
+  });
+
+  // Отправка по Enter
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      form.submit();
+    }
+  });
+</script>
 </body>
 </html>

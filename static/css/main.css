@@ -64,13 +64,33 @@ header h1 a {
 
 
 /* === Navigation === */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 0 1.5rem;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 120px;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
-    background-color: #343a40; /* Bootstrap dark grey */
 }
 
 nav ul li {
@@ -84,6 +104,7 @@ nav ul li a {
     white-space: nowrap;
     padding: 1rem 1.5rem;
     transition: background-color 0.2s ease-in-out;
+    font-size: 1.5rem;
 }
 
 nav ul li:hover > a,
@@ -427,4 +448,75 @@ footer {
         flex-direction: column;
         gap: 0.25rem;
     }
+}
+
+/* === Search Bar === */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.search-icon img {
+    width: 36px;
+    height: 36px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 40px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  visibility: hidden;
+}
+
+.search-form.active {
+  width: 250px;
+  opacity: 1;
+  visibility: visible;
+}
+
+#search-input {
+  border: none;
+  padding: 8px 12px;
+  outline: none;
+  width: 100%;
+}
+
+.search-submit {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.search-submit img {
+    width: 20px;
+    height: 20px;
+}
+
+.eye-icon {
+    display: flex;
+    align-items: center;
+}
+
+.eye-icon img {
+    width: 36px;
+    height: 36px;
 }
