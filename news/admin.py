@@ -10,17 +10,20 @@ class NewsArticleAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('title', 'content', 'author', 'is_published')
+            'fields': ('title', 'content', 'author')
         }),
         ('Изображение', {
-            'classes': ('collapse',),
+            'classes': (),
             'description': 'Загрузите файл или укажите ссылку. Что-то одно.',
             'fields': ('image', 'image_url'),
         }),
         ('Видео', {
-            'classes': ('collapse',),
+            'classes': (),
             'description': 'Загрузите файл или укажите ссылку. Что-то одно.',
             'fields': ('video', 'video_url'),
+        }),
+        (None, {
+            'fields': ('is_published',)
         }),
     )
 
